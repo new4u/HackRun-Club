@@ -40,5 +40,11 @@
 </head>
 <body>
     <div id="root"></div>
+    <script type="module">
+        // 加载并渲染 React 路由入口
+        import('/index.tsx').catch(err => {
+            console.error('Failed to load index.tsx', err);
+        });
+    </script>
 </body>
 </html>
