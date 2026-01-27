@@ -12,7 +12,7 @@ export const INTEL_DATA: HackathonIntel[] = [
     category: 'Platform'
   },
   {
-    name: 'Mantle',
+    name: 'Monad',
     rating: 4,
     tags: ['生态活跃', '奖励丰厚'],
     description: '对AI Agent赛道支持力度大，适合RWA/DeFi开发者。',

@@ -7,7 +7,7 @@ const Retrospective: React.FC = () => {
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="flex items-center gap-3 mb-4">
         <Trophy className="text-yellow-400" size={32} />
-        <h2 className="text-3xl font-bold">复盘：从"死了么"到 "我死了吗 WOW silema"</h2>
+        <h2 className="text-3xl font-bold">复盘：从GameOfLife到 "我死了吗"</h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -26,14 +26,14 @@ const Retrospective: React.FC = () => {
                 <div className="mt-1"><div className="w-1.5 h-1.5 rounded-full bg-cyan-500" /></div>
                 <div>
                   <div className="font-semibold text-sm">极致命名</div>
-                  <div className="text-xs text-gray-500">“我死了吗” (Am I Dead Yet) - 击穿用户心理预期。</div>
+                  <div className="text-xs text-gray-500">“我死了吗” (WOW silema) - 击穿用户心理预期。</div>
                 </div>
               </li>
               <li className="flex items-start gap-2 bg-white/5 p-3 rounded-xl">
                 <div className="mt-1"><div className="w-1.5 h-1.5 rounded-full bg-cyan-500" /></div>
                 <div>
                   <div className="font-semibold text-sm">AI 协同开发</div>
-                  <div className="text-xs text-gray-500">利用 Gemini 3 直接生成 Web3 逻辑，无需美工，代码先行。</div>
+                  <div className="text-xs text-gray-500">多 AI 配合，但不要掉入Vibe的陷阱，美工第二，功能先行。</div>
                 </div>
               </li>
               <li className="flex items-start gap-2 bg-white/5 p-3 rounded-xl">
