@@ -7,7 +7,7 @@ const Retrospective: React.FC = () => {
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="flex items-center gap-3 mb-4">
         <Trophy className="text-yellow-400" size={32} />
-        <h2 className="text-3xl font-bold">复盘：从 "Monad" 到 "我死了吗"</h2>
+        <h2 className="text-3xl font-bold">复盘：从 "Nomad" 到 "我死了吗"</h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -16,10 +16,10 @@ const Retrospective: React.FC = () => {
           <div className="glass p-6 rounded-2xl border-l-4 border-cyan-500">
             <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
               <Clock size={20} className="text-cyan-400" />
-              关键 3 小时：不仅是开发，更是价值交付的极致练习
+              关键 3 小时：不仅是开发，更是心理战
             </h3>
             <p className="text-gray-400 leading-relaxed mb-4">
-              在深圳的 <span className="text-white font-bold">Monad</span> 赛场，我意识到：<span className="text-white font-medium">竞争对手不是用来打败的，而是用来超越自我的。</span> 当其他人沉迷于口嗨社交和连不上测试链时，我用了 3 小时完成了最核心的交付：
+              在深圳的 Nomad 赛场，我意识到：<span className="text-white font-medium">竞争对手不是用来打败的，而是用来超越自我的。</span> 当其他人沉迷于口嗨社交和连不上测试链时，我用了 3 小时完成了最核心的交付：
             </p>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <li className="flex items-start gap-2 bg-white/5 p-3 rounded-xl">

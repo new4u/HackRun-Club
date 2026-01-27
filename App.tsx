@@ -12,6 +12,7 @@ import {
   Layers,
   Sparkles,
   ArrowRight,
+  // Added Database and Code to fix missing imports on lines 155 and 162
   Database,
   Code
 } from 'lucide-react';
@@ -36,12 +37,12 @@ const App: React.FC = () => {
           <Sparkles size={14} className="text-cyan-400" />
           <span className="text-xs font-semibold tracking-wider uppercase text-cyan-400">HackRun Club | 松友团</span>
         </div>
-        <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight max-w-5xl mx-auto">
-          交付是黑客松唯一的 <span className="gradient-text">社交语言</span>
+        <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
+          交付是唯一的 <span className="gradient-text">社交语言</span>
         </h1>
-        <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
           把黑客松当作“跑团”训练：平时实战训练，比赛高效冲刺。<br/>
-          在这里，我们不听课，我们只练习 <span className="text-white font-semibold">价值交付</span>。
+          在这里，我们不听课，我们只交付。
         </p>
       </header>
 
@@ -59,10 +60,10 @@ const App: React.FC = () => {
               黑客松情报站
             </h2>
             <div className="text-xs text-gray-500">
-              *基于真实交付反馈评级，数据源自 HackQuest & OpenBuild
+              *基于真实交付反馈评级
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {INTEL_DATA.map((item, idx) => (
               <div key={idx} className="glass p-6 rounded-2xl hover:border-cyan-500/50 transition-all group">
                 <div className="flex justify-between items-start mb-4">
@@ -76,7 +77,7 @@ const App: React.FC = () => {
                   </div>
                 </div>
                 <h3 className="text-lg font-bold mb-2 group-hover:text-cyan-400 transition-colors">{item.name}</h3>
-                <p className="text-sm text-gray-500 mb-4 h-12 line-clamp-2">{item.description}</p>
+                <p className="text-sm text-gray-500 mb-4 line-clamp-2">{item.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {item.tags.map(tag => (
                     <span key={tag} className="text-[10px] bg-white/5 border border-white/10 px-2 py-0.5 rounded-full text-gray-400">
@@ -99,7 +100,7 @@ const App: React.FC = () => {
             <div className="space-y-6">
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold">1</div>
-                <p className="text-gray-400">看到 <span className="text-white">Monad</span> 或 <span className="text-white">Scroll</span> 的招募广告心痒难耐，报名后发现队友难找、方向不清。</p>
+                <p className="text-gray-400">看到招募广告心痒难耐，报名后发现队友难找、方向不清。</p>
               </div>
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold">2</div>
@@ -107,7 +108,7 @@ const App: React.FC = () => {
               </div>
               <div className="flex gap-4">
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold">3</div>
-                <p className="text-gray-400">松友团的目标只有一个：<span className="text-white font-semibold">练习如何交付一个能演示的作品，拿走属于你的奖金。</span></p>
+                <p className="text-gray-400">松友团的目标只有一个：<span className="text-white font-semibold">交付一个能演示的作品，拿走属于你的奖金。</span></p>
               </div>
             </div>
           </div>
