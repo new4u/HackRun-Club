@@ -7,7 +7,7 @@ const Retrospective: React.FC = () => {
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="flex items-center gap-3 mb-4">
         <Trophy className="text-yellow-400" size={32} />
-        <h2 className="text-3xl font-bold">复盘：从 "Monad" 到 "我死了吗"</h2>
+        <h2 className="text-3xl font-bold">复盘：从"死了么"到 "我死了吗 WOW silema"</h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
