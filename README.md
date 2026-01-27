@@ -12,12 +12,6 @@ npm install
 npm run dev
 ```
 
-Vite 前端可选配置（用于直接写入数据库）：
-
-```env
-VITE_SURVEY_ENDPOINT=https://your-railway-service.up.railway.app/api/survey
-```
-
 
 > 当前代码未直接读取该变量，仅通过 `vite.config.ts` 注入到 `process.env`，后续如需调用可在业务代码中使用。
 
@@ -26,45 +20,6 @@ VITE_SURVEY_ENDPOINT=https://your-railway-service.up.railway.app/api/survey
 ```bash
 npm run build
 npm run preview
-```
-
-## Railway Postgres 后端（可选）
-
-启动后端服务：
-
-```bash
-npm install
-npm run start
-```
-
-必需环境变量：
-
-```env
-DATABASE_URL=postgresql://user:password@host:port/db
-```
-
-接口路径：
-
-```
-POST /api/survey
-```
-
-请求体示例：
-
-```json
-{
-  "purpose": "找工作",
-  "timeCommit": "5h",
-  "codeLevel": "能写简单 Demo",
-  "aiLevel": "会用 IDE/Agent 工具",
-  "wechatId": "your_wechat"
-}
-```
-
-成功响应：
-
-```json
-{ "ok": true }
 ```
 
 ## 项目结构

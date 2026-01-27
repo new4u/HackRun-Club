@@ -14,52 +14,26 @@ const SurveyModal: React.FC<SurveyModalProps> = ({ isOpen, onClose }) => {
   const [codeLevel, setCodeLevel] = useState('完全不会');
   const [aiLevel, setAiLevel] = useState('只会聊天');
   const [wechatId, setWechatId] = useState('');
-  const [submitMode, setSubmitMode] = useState<'github' | 'db'>('github');
-  const [error, setError] = useState<string | null>(null);
   
   if (!isOpen) return null;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    try {
-      const endpoint = import.meta.env.VITE_SURVEY_ENDPOINT;
-      if (endpoint) {
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            purpose,
-            timeCommit,
-            codeLevel,
-            aiLevel,
-            wechatId
-          })
-        });
-        if (!res.ok) throw new Error('submit_failed');
-        setSubmitMode('db');
-      } else {
-        const owner = 'new4u';
-        const repo = 'HackRun-Club';
-        const title = `Join Survey: ${wechatId || 'anonymous'}`;
-        const body = [
-          `Purpose: ${purpose}`,
-          `Time: ${timeCommit || '未选择'}`,
-          `Code Level: ${codeLevel}`,
-          `AI Level: ${aiLevel}`,
-          `WeChat: ${wechatId}`
-        ].join('\n');
-        const url = new URL(`https://github.com/${owner}/${repo}/issues/new`);
-        url.searchParams.set('title', title);
-        url.searchParams.set('body', body);
-        window.open(url.toString(), '_blank');
-        setSubmitMode('github');
-      }
-    } catch (err) {
-      setSubmitted(false);
-      setError('提交失败，请稍后重试');
-      return;
-    }
+    const owner = 'new4u';
+    const repo = 'HackRun-Club';
+    const title = `Join Survey: ${wechatId || 'anonymous'}`;
+    const body = [
+      `Purpose: ${purpose}`,
+      `Time: ${timeCommit || '未选择'}`,
+      `Code Level: ${codeLevel}`,
+      `AI Level: ${aiLevel}`,
+      `WeChat: ${wechatId}`
+    ].join('\n');
+    const url = new URL(`https://github.com/${owner}/${repo}/issues/new`);
+    url.searchParams.set('title', title);
+    url.searchParams.set('body', body);
+    window.open(url.toString(), '_blank');
     setTimeout(() => {
       onClose();
       setSubmitted(false);
@@ -68,7 +42,6 @@ const SurveyModal: React.FC<SurveyModalProps> = ({ isOpen, onClose }) => {
       setCodeLevel('完全不会');
       setAiLevel('只会聊天');
       setWechatId('');
-      setSubmitMode('github');
     }, 1500);
   };
 
@@ -85,13 +58,13 @@ const SurveyModal: React.FC<SurveyModalProps> = ({ isOpen, onClose }) => {
         {submitted ? (
           <div className="p-12 text-center flex flex-col items-center gap-4">
             <CheckCircle size={64} className="text-green-500 animate-bounce" />
-            <h3 className="text-2xl font-bold">{submitMode === 'db' ? '提交成功！' : '已打开 GitHub Issue 页面'}</h3>
-            <p className="text-gray-400">{submitMode === 'db' ? '已写入数据库，稍后会联系您。' : '请在新页面确认并提交。'}</p>
+            <h3 className="text-2xl font-bold">已打开 GitHub Issue 页面</h3>
+            <p className="text-gray-400">请在新页面确认并提交。</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-8 space-y-6">
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold">加入松友团调研（Powered by Github）</h2>
+              <h2 className="text-2xl font-bold">加入松友团调研</h2>
               <p className="text-sm text-gray-400">填写即刻获取《Starter Pack》干货资源</p>
             </div>
 
@@ -151,11 +124,7 @@ const SurveyModal: React.FC<SurveyModalProps> = ({ isOpen, onClose }) => {
               <Send size={18} />
               提交调研获取 Starter Pack
             </button>
-            {error ? (
-              <div className="text-xs text-red-400 pt-2">{error}</div>
-            ) : (
-              <div className="text-xs text-gray-500 pt-2">默认会打开 GitHub Issue 页面；配置后将写入数据库</div>
-            )}
+            <div className="text-xs text-gray-500 pt-2">提交后将打开 GitHub Issue 页面用于发送</div>
           </form>
         )}
       </div>
