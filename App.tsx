@@ -182,7 +182,7 @@ const App: React.FC = () => {
       {/* Footer Info */}
       <footer className="border-t border-white/5 py-12">
         <div className="container mx-auto px-6 text-center text-gray-600 text-xs">
-          <p>© 2024 HackRun Club (松友团). Built with AI for Builders.</p>
+          <p>© 2026 HackRun Club (松友团). Built with AI for Builders.</p>
           <div className="mt-4 flex justify-center gap-6">
             <a href="#" className="hover:text-white transition-colors">WeChat Group</a>
             <a href="#" className="hover:text-white transition-colors">Notion Wiki</a>
