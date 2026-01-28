@@ -5,9 +5,10 @@ import { X, Send, CheckCircle } from 'lucide-react';
 interface SurveyModalProps {
   isOpen: boolean;
   onClose: () => void;
+  defaultPlan: string;
 }
 
-const SurveyModal: React.FC<SurveyModalProps> = ({ isOpen, onClose }) => {
+const SurveyModal: React.FC<SurveyModalProps> = ({ isOpen, onClose, defaultPlan }) => {
   const [submitted, setSubmitted] = useState(false);
   const [purpose, setPurpose] = useState('找工作');
   const [timeCommit, setTimeCommit] = useState<string | null>(null);
@@ -22,8 +23,9 @@ const SurveyModal: React.FC<SurveyModalProps> = ({ isOpen, onClose }) => {
     setSubmitted(true);
     const owner = 'new4u';
     const repo = 'HackRun-Club';
-    const title = `Join Survey: ${wechatId || 'anonymous'}`;
+    const title = `Join Survey: ${defaultPlan} - ${wechatId || 'anonymous'}`;
     const body = [
+      `Plan: ${defaultPlan}`,
       `Purpose: ${purpose}`,
       `Time: ${timeCommit || '未选择'}`,
       `Code Level: ${codeLevel}`,

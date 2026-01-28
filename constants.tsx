@@ -57,6 +57,7 @@ export const MEMBERSHIPS: MembershipTier[] = [
     id: 'premium',
     name: 'HackAround AI Power Pack',
     price: '199 RMB',
+    priceNote: '满勤可获得现金奖励',
     limit: '限量 30 席',
     benefits: [
       '核心私密社交群席位',

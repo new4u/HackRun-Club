@@ -17,6 +17,7 @@ export interface MembershipTier {
   id: string;
   name: string;
   price: string;
+  priceNote?: string;
   benefits: string[];
   limit?: string;
   type: 'Free' | 'Premium';

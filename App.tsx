@@ -22,6 +22,18 @@ import { INTEL_DATA, ACHIEVEMENTS, MEMBERSHIPS } from './constants';
 
 const App: React.FC = () => {
   const [isSurveyOpen, setIsSurveyOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState('入门 Starter 免费');
+
+  const openSurvey = (plan: string) => {
+    setSelectedPlan(plan);
+    setIsSurveyOpen(true);
+  };
+  const footerLinks = [
+    { label: 'WeChat Group', href: '' },
+    { label: 'Notion Wiki', href: '' },
+    { label: 'GitHub', href: '' }
+  ];
+  const activeFooterLinks = footerLinks.filter(link => link.href && link.href !== '#');
 
   return (
     <div className="min-h-screen pb-20 selection:bg-cyan-500 selection:text-white">
@@ -129,7 +141,12 @@ const App: React.FC = () => {
                   </div>
                 )}
                 <h3 className="text-2xl font-bold mb-2">{tier.name}</h3>
-                <div className="text-4xl font-black mb-8">{tier.price}</div>
+                <div className="mb-8">
+                  <div className="text-4xl font-black">{tier.price}</div>
+                  {tier.priceNote && (
+                    <div className="text-xs text-gray-400 mt-1">（{tier.priceNote}）</div>
+                  )}
+                </div>
                 <ul className="space-y-4 mb-10">
                   {tier.benefits.map((benefit, i) => (
                     <li key={i} className="flex items-center gap-3 text-gray-400 text-sm">
@@ -139,7 +156,7 @@ const App: React.FC = () => {
                   ))}
                 </ul>
                 <button 
-                  onClick={() => setIsSurveyOpen(true)}
+                  onClick={() => openSurvey(tier.type === 'Premium' ? 'HackAround AI Power Pack 199 RMB' : '入门 Starter 免费')}
                   className={`w-full py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 ${tier.type === 'Premium' ? 'bg-cyan-500 text-black hover:bg-cyan-400 shadow-lg' : 'bg-white/10 text-white hover:bg-white/20'}`}
                 >
                   {tier.type === 'Premium' ? '立即抢位加入' : '免费获取入门包'}
@@ -183,11 +200,15 @@ const App: React.FC = () => {
       <footer className="border-t border-white/5 py-12">
         <div className="container mx-auto px-6 text-center text-gray-600 text-xs">
           <p>© 2026 HackRun Club (松友团). Built with AI for Builders.</p>
-          <div className="mt-4 flex justify-center gap-6">
-            <a href="#" className="hover:text-white transition-colors">WeChat Group</a>
-            <a href="#" className="hover:text-white transition-colors">Notion Wiki</a>
-            <a href="#" className="hover:text-white transition-colors">GitHub</a>
-          </div>
+          {activeFooterLinks.length > 0 && (
+            <div className="mt-4 flex justify-center gap-6">
+              {activeFooterLinks.map(link => (
+                <a key={link.label} href={link.href} className="hover:text-white transition-colors">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </footer>
 
@@ -195,12 +216,13 @@ const App: React.FC = () => {
       <SurveyModal 
         isOpen={isSurveyOpen} 
         onClose={() => setIsSurveyOpen(false)} 
+        defaultPlan={selectedPlan}
       />
 
       {/* Floating CTA for Mobile */}
       <div className="fixed bottom-6 left-6 right-6 md:hidden z-40">
         <button 
-          onClick={() => setIsSurveyOpen(true)}
+          onClick={() => openSurvey('入门 Starter 免费')}
           className="w-full bg-cyan-500 text-black font-black py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-2"
         >
           <Zap size={20} />
