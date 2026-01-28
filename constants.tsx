@@ -62,7 +62,7 @@ export const MEMBERSHIPS: MembershipTier[] = [
     benefits: [
       '核心私密社交群席位',
       '进阶 AI 地图 (JSON+Web)',
-      '全流程 Prompt (Cloud Code)',
+      '全流程 Prompt (Claude code)',
       '每周 1 次 60min 实战训练',
       '导师 1 对 1 交付陪跑'
     ],
