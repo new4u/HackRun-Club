@@ -1,6 +1,7 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Send, CheckCircle } from 'lucide-react';
+import { safeCapture } from '../posthog';
 
 interface SurveyModalProps {
   isOpen: boolean;
@@ -16,11 +17,43 @@ const SurveyModal: React.FC<SurveyModalProps> = ({ isOpen, onClose, defaultPlan 
   const [aiLevel, setAiLevel] = useState('只会聊天');
   const [wechatId, setWechatId] = useState('');
   
+  // 跟踪表单是否触发过 partial fill
+  const [hasTriggeredPartialFill, setHasTriggeredPartialFill] = useState(false);
+
+  useEffect(() => {
+    // 重置状态当 modal 打开时
+    if (isOpen) {
+      setHasTriggeredPartialFill(false);
+    }
+  }, [isOpen]);
+
+  // 监听字段变化触发 form_partial_fill
+  useEffect(() => {
+    if (!isOpen || hasTriggeredPartialFill || submitted) return;
+
+    let filledCount = 0;
+    // 检查各字段是否非默认值或已填写
+    if (purpose !== '找工作') filledCount++;
+    if (timeCommit !== null) filledCount++;
+    if (codeLevel !== '完全不会') filledCount++;
+    if (aiLevel !== '只会聊天') filledCount++;
+    if (wechatId.length > 0) filledCount++;
+
+    if (filledCount >= 2) {
+      safeCapture('form_partial_fill', { plan: defaultPlan });
+      setHasTriggeredPartialFill(true);
+    }
+  }, [purpose, timeCommit, codeLevel, aiLevel, wechatId, isOpen, hasTriggeredPartialFill, submitted, defaultPlan]);
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    
+    // 触发 form_submit
+    safeCapture('form_submit', { plan: defaultPlan });
+
     const owner = 'new4u';
     const repo = 'HackRun-Club';
     const title = `Join Survey: ${defaultPlan} - ${wechatId || 'anonymous'}`;

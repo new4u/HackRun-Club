@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Zap, 
   Users, 
@@ -19,12 +19,29 @@ import {
 import Retrospective from './components/Retrospective';
 import SurveyModal from './components/SurveyModal';
 import { INTEL_DATA, ACHIEVEMENTS, MEMBERSHIPS } from './constants';
+import { safeCapture, safeRegister } from './posthog';
 
 const App: React.FC = () => {
   const [isSurveyOpen, setIsSurveyOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState('入门 Starter 免费');
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const props: Record<string, string> = {};
+      urlParams.forEach((value, key) => {
+        if (key.length < 20 && value.length < 50) { // 简单防护
+            props[key] = value;
+        }
+      });
+      if (Object.keys(props).length > 0) {
+        safeRegister(props);
+      }
+    }
+  }, []);
+
   const openSurvey = (plan: string) => {
+    safeCapture('form_open', { plan });
     setSelectedPlan(plan);
     setIsSurveyOpen(true);
   };
